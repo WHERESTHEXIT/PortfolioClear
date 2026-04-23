@@ -123,7 +123,7 @@ const STAGES = {
 const PREUVES_CATEGORIES = ["Toutes", "Stage SIO1", "Stage SIO2", "Projets Perso", "Projets Pro"];
 
 const PREUVES = [
-  { id: 1, url: "/PortfolioClear/images/siteasp.jpg", titre: "Un des sites web finaux d'ASP France.", categorie: "Stage SIO1", description: "Site sous WordPress abandonné après plusieurs propositions." },
+  { id: 1, url: "images/siteasp.jpg", titre: "Un des sites web finaux d'ASP France.", categorie: "Stage SIO1", description: "Site sous WordPress abandonné après plusieurs propositions." },
   { id: 2, url: "/images/key.jpg", titre: "Activation d'une clé de license Windows.", categorie: "Stage SIO1", description: "Sous demande d'un(e) client(e), nous avons activé une clé Windows 7." },
   { id: 3, url: "/images/word.jpg", titre: "Interface WordPress.", categorie: "Stage SIO1", description: "Interface de développement du CMS WordPress." },
   { id: 4, url: "/images/siteaspini.jpg", titre: "Site initial d'ASP France.", categorie: "Stage SIO1", description: "Site et interface toujours active d'ASP France." },
