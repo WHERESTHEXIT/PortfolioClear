@@ -1,66 +1,47 @@
-# 💎 Portfolio BTS SIO - Épreuve E5 
+# 💎 Portfolio BTS SIO - Épreuve E5
 
-Bienvenue sur le dépôt de mon portfolio professionnel réalisé dans le cadre de mon **BTS Services Informatiques aux Organisations (Option SLAM)**. 
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)![GitHub Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)![Status](https://img.shields.io/badge/Statut-Opérationnel-success?style=for-the-badge)
 
-🚀 **[Voir le portfolio en direct ici](https://wheresthexit.github.io/PortfolioClear/)**
+Bienvenue sur le dépôt de mon portfolio professionnel réalisé pour le **BTS Services Informatiques aux Organisations (Option SLAM)**.
 
----
-
-## ✨ Présentation du Projet
-Ce portfolio a été conçu pour présenter mes compétences, mes réalisations et mon parcours professionnel lors de l'épreuve E5. L'esthétique repose sur un design **"Liquid Glass"** (Glassmorphism) inspiré de l'interface moderne d'Apple, offrant une expérience utilisateur fluide et élégante.
-
-### 🛠️ Fonctionnalités clés :
-* **🌌 Design Glassmorphism :** Effets de flou d'arrière-plan (backdrop-blur) et transparence liquide.
-* **🌗 Mode Sombre/Clair :** Basculement dynamique du thème avec persistance visuelle.
-* **📱 Entièrement Responsive :** Adapté aux mobiles, tablettes et ordinateurs.
-* **📁 Gestion des Stages :** Pages dédiées pour SIO1 et SIO2 avec galeries d'images intégrées.
-* **📊 Tableau des Preuves :** Système de filtrage par catégories pour les compétences E5.
-* **🔍 Visionneuse d'images :** Lightbox intégrée pour consulter les documents et captures en plein écran.
+🚀 **[Accéder au site en ligne](https://wheresthexit.github.io/PortfolioClear/)**
 
 ---
 
-## 🚀 Technologies Utilisées
+## ✨ Présentation
+Ce portfolio centralise l'ensemble des travaux réalisés durant mes deux années de formation. L'esthétique repose sur le **Glassmorphism** (effet de verre dépoli), offrant une interface épurée et professionnelle pour le jury de l'épreuve E5.
 
-* **Framework :** [React.js](https://reactjs.org/) (Vite) ⚛️
-* **Style :** [Tailwind CSS](https://tailwindcss.com/) 🎨
-* **Icônes :** [Lucide React](https://lucide.dev/) 🧊
-* **Déploiement :** [GitHub Pages](https://pages.github.com/) 🌐
-
----
-
-## 💻 Installation et Développement Local
-
-Si vous souhaitez cloner ce projet et le lancer sur votre machine :
-
-1.  **Cloner le dépôt :**
-    ```bash
-    git clone [https://github.com/WHERESTHEXIT/PortfolioClear.git](https://github.com/WHERESTHEXIT/PortfolioClear.git)
-    cd PortfolioClear
-    ```
-
-2.  **Installer les dépendances :**
-    ```bash
-    npm install
-    ```
-
-3.  **Lancer le serveur de développement :**
-    ```bash
-    npm run dev
-    ```
-    *Le site sera accessible sur `http://localhost:5173`*
-
-4.  **Déployer les modifications :**
-    ```bash
-    npm run deploy
-    ```
+### 🛠️ Fonctionnalités :
+* **🌌 Liquid Glass :** Interface moderne avec flous dynamiques.
+* **🌗 Thème Dynamique :** Support complet du mode sombre et clair.
+* **📁 Parcours Pro :** Sections dédiées aux stages (SIO1 & SIO2).
+* **📊 Compétences :** Tableau des preuves filtrable par catégorie (Développement, Réseau, Cybersécurité).
+* **🔍 Galerie Interactive :** Visionneuse d'images haute définition pour les preuves.
 
 ---
 
-## 📂 Structure du Projet
+## 🚀 Technologies
 
-* `src/App.jsx` : Cœur de l'application (Routes, Logique, Composants).
-* `public/images/` : Dossier contenant toutes les preuves et photos de stage.
-* `tailwind.config.js` : Configuration personnalisée pour les effets de verre et le mode sombre.
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+
+* **Framework :** React ⚛️ (Vite)
+* **Stylisation :** Tailwind CSS 🎨
+* **Icônes :** Lucide React 🧊
+* **Hébergement :** GitHub Pages 🌐
 
 ---
-✨ *Réalisé avec passion pour l'informatique.*
+
+## 💻 Développement Local
+
+```bash
+# Cloner le projet
+git clone [https://github.com/WHERESTHEXIT/PortfolioClear.git](https://github.com/WHERESTHEXIT/PortfolioClear.git)
+
+# Installer les dépendances
+npm install
+
+# Lancer le mode dev
+npm run dev
+
+# Déployer sur GitHub Pages
+npm run deploy
