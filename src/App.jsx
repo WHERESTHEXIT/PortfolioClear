@@ -22,7 +22,6 @@ const COMPETENCES_TECH = [
 
 const CERTIFICATIONS = [
   { nom: "OWASP", organisme: "OpenClassRooms" },
-  { nom: "Gestion des Cybermenaces", organisme: "Netacad" },
   { nom: "Notions de base sur les réseaux", organisme: "Netacad" },
   { nom: "JavaScript", organisme: "OpenClassRooms" },
   { nom: "Secnum Académie", organisme: "ANSSI" },
