@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ExternalLink, Mail, FileText, ChevronRight, Eye, Image as ImageIcon, Briefcase, Code, GraduationCap, Award, Sun, Moon } from 'lucide-react';
+import { Menu, X, ExternalLink, Mail, FileText, ChevronRight, Eye, Image as ImageIcon, Briefcase, Code, GraduationCap, Award, Sun, Moon, ShieldCheck, Globe, Rss } from 'lucide-react';
 
 const INFOS = {
   nom: "Tom DUVAL",
@@ -12,13 +12,63 @@ const INFOS = {
   lienPreuvesExternes: "http://urlr.me/xGDYkV"
 };
 
+const COMPETENCES_TECH = [
+  { label: "Développement", items: ["Javascript", "C#", "HTML/CSS", "PHP", "Python"], icon: <Code size={20}/> },
+  { label: "Framework", items: ["React", ".NET"], icon: <Globe size={20}/> },
+  { label: "Base de données", items: ["MySQL"], icon: <ImageIcon size={20}/> },
+  { label: "Versioning", items: ["GitHub"], icon: <ExternalLink size={20}/> },
+  { label: "Autre", items: ["Travail en équipe", "Gestion de projet", "Unity", "Vite"], icon: <Briefcase size={20}/> }
+];
+
+const CERTIFICATIONS = [
+  { nom: "OWASP", organisme: "OpenClassRooms" },
+  { nom: "Gestion des Cybermenaces", organisme: "Netacad" },
+  { nom: "Notions de base sur les réseaux", organisme: "Netacad" },
+  { nom: "JavaScript", organisme: "OpenClassRooms" },
+  { nom: "Secnum Académie", organisme: "ANSSI" },
+  { nom: "Certification Pix", organisme: "Éducation Nationale" }
+];
+
+const VEILLE_DATA = [
+  { 
+    nom: "r/cybersecurity", 
+    url: "https://www.reddit.com/r/cybersecurity/", 
+    desc: "Actualités quotidiennes, discussions sur les dernières failles et outils de sécurité.",
+    source: "Reddit"
+  },
+  { 
+    nom: "r/piracy", 
+    url: "https://www.reddit.com/r/piracy/", 
+    desc: "Étude des méthodes de contournement et de protection numérique.",
+    source: "Reddit"
+  },
+  { 
+    nom: "ANSSI", 
+    url: "https://www.ssi.gouv.fr/actualites/", 
+    desc: "Alertes et rapports officiels de l'Agence Nationale de la Sécurité des Systèmes d'Information.",
+    source: "Officiel"
+  },
+  { 
+    nom: "The Hacker News", 
+    url: "https://thehackernews.com/", 
+    desc: "Blog d'actualité leader sur la cybersécurité mondiale.",
+    source: "Blog"
+  },
+  { 
+    nom: "r/developpeurs", 
+    url: "https://www.reddit.com/r/developpeurs/", 
+    desc: "Actualités sur le monde du développement.",
+    source: "Reddit"
+  },
+];
+
 const PROJETS_PERSO = [
   {
     id: 1,
     titre: "IA Reconnaissance d'objets.",
     description: "Utilisation de l'IA opensource Yolo26 afin de réaliser de la détection d'objets (+200 objets).",
     technos: ["Yolo", "IA"],
-    image: "/public/images/IA.jpg",
+    image: "images/IA.jpg",
     lien: "https://github.com/WHERESTHEXIT"
   },
   {
@@ -26,7 +76,7 @@ const PROJETS_PERSO = [
     titre: "Jeux-vidéo FOUND",
     description: "Réalisé en C# sur Unity, c'était mon premier projet de développement (commencé en hiver 2024).",
     technos: ["Unity", "C#"],
-    image: "/images/NiveauOverall.png",
+    image: "images/NiveauOverall.png",
     lien: "https://github.com/WHERESTHEXIT"
   },
   {
@@ -34,7 +84,7 @@ const PROJETS_PERSO = [
     titre: "Portfolio Terminal",
     description: "Mon premier Portfolio, à but uniquement personnel, avec pour inspiration les terminaux de commande des années 90.",
     technos: ["CSS", "HTML", "Github"],
-    image: "/public/images/Terminal.png",
+    image: "images/Terminal.png",
     lien: "https://github.com/WHERESTHEXIT"
   },
   {
@@ -42,7 +92,7 @@ const PROJETS_PERSO = [
     titre: "Ce Portfolio",
     description: "Site web type 'vitrine' afin de présenter l'épreuve E5.",
     technos: ["React", "Github"],
-    image: "/public/images/E5.png",
+    image: "images/E5.png",
     lien: "https://github.com/WHERESTHEXIT"
   }
 ];
@@ -53,7 +103,7 @@ const PROJETS_PRO = [
     titre: "Projet Digicode",
     description: "Projet de site web fictif pour la Maison des Ligues de Lorraine, avec des systèmes simple comme la modification de son mot de passe.",
     technos: ["PHP", "HTML", "MySQL"],
-    image: "/public/images/digicode.png",
+    image: "images/digicode.png",
     lien: "https://drive.google.com/drive/folders/1YhsyjgMq0ERPKXfNYqa4QPwEDWVinpBv?usp=sharing"
   },
   {
@@ -61,7 +111,7 @@ const PROJETS_PRO = [
     titre: "Projet PrestaShop",
     description: "Réalisation d'un site web fictif gérant la vente de matériel de peinture et d'oeuvres en ligne.",
     technos: ["CMS"],
-    image: "/public/images/presta.png",
+    image: "images/presta.png",
     lien: "https://drive.google.com/drive/folders/1YhsyjgMq0ERPKXfNYqa4QPwEDWVinpBv?usp=sharing"
   },
   {
@@ -69,7 +119,7 @@ const PROJETS_PRO = [
     titre: "Projet TraceGPS",
     description: "Création d'une application C# & Web afin de suivre les parcours sportifs de coureurspar exemple (Strava).",
     technos: ["Github", "C#", "JavaScript", "PHP"],
-    image: "/public/images/trace.png",
+    image: "images/trace.png",
     lien: "https://drive.google.com/drive/folders/1YhsyjgMq0ERPKXfNYqa4QPwEDWVinpBv?usp=sharing"
   },
   {
@@ -77,7 +127,7 @@ const PROJETS_PRO = [
     titre: "Projet Tutorat",
     description: "Application permettant la mise en relation entre les élèves et les étudiants afin qu'ils puissent réaliser leurs révisions/devoirs.",
     technos: ["PowerApps", "Teams", "PowerAutomate", "SharePoint"],
-    image: "/public/images/tutorat.png",
+    image: "images/tutorat.png",
     lien: "https://drive.google.com/drive/folders/1YhsyjgMq0ERPKXfNYqa4QPwEDWVinpBv?usp=sharing"
   }
 ];
@@ -96,9 +146,9 @@ const STAGES = {
       "Refonte, migration et développement du site web sous WordPress"
     ],
     images: [
-      { url: "/public/images/IMG_8486.jpg", titre: "Aperçu du site web final" },
-      { url: "/public/images/IMG_8281.jpg", titre: "Installation de logiciels pour un client" },
-      { url: "/public/images/IMG_8265.jpg", titre: "Interface d'un OMSA des serveurs des mairies de la périphérie de Rennes" }
+      { url: "images/IMG_8486.jpg", titre: "Aperçu du site web final" },
+      { url: "images/IMG_8281.jpg", titre: "Installation de logiciels pour un client" },
+      { url: "images/IMG_8265.jpg", titre: "Interface d'un OMSA des serveurs des mairies de la périphérie de Rennes" }
     ]
   },
   sio2: {
@@ -114,8 +164,8 @@ const STAGES = {
       "Sécurité applicative et lutte contre les bots"
     ],
     images: [
-      { url: "/public/images/IMG_0157.JPG", titre: "Interface du CMS (TinaCMS)" },
-      { url: "/public/images/IMG_9742.jpg", titre: "Git Merge du site de prod vers le final" }
+      { url: "images/IMG_0157.JPG", titre: "Interface du CMS (TinaCMS)" },
+      { url: "images/IMG_9742.jpg", titre: "Git Merge du site de prod vers le final" }
     ]
   }
 };
@@ -123,35 +173,34 @@ const STAGES = {
 const PREUVES_CATEGORIES = ["Toutes", "Stage SIO1", "Stage SIO2", "Projets Perso", "Projets Pro"];
 
 const PREUVES = [
-  { id: 1, url: "/images/siteasp.jpg", titre: "Un des sites web finaux d'ASP France.", categorie: "Stage SIO1", description: "Site sous WordPress abandonné après plusieurs propositions." },
-  { id: 2, url: "/images/key.jpg", titre: "Activation d'une clé de license Windows.", categorie: "Stage SIO1", description: "Sous demande d'un(e) client(e), nous avons activé une clé Windows 7." },
-  { id: 3, url: "/images/word.jpg", titre: "Interface WordPress.", categorie: "Stage SIO1", description: "Interface de développement du CMS WordPress." },
-  { id: 4, url: "/images/siteaspini.jpg", titre: "Site initial d'ASP France.", categorie: "Stage SIO1", description: "Site et interface toujours active d'ASP France." },
-  { id: 5, url: "/images/serveur1.jpg", titre: "Baie de serveur", categorie: "Stage SIO1", description: "Baie de serveur d'un client d'ASP France." },
-  { id: 6, url: "/images/serveur2.jpg", titre: "Baie de serveur", categorie: "Stage SIO1", description: "Baie de serveur d'un autre client d'ASP France." },
-  { id: 7, url: "/images/help.jpg", titre: "Assistance HelpDesk d'un des clients.", categorie: "Stage SIO1", description: "Assistance d'un client sur un problème de driver Intel." },
-  { id: 8, url: "/images/composants.jpg", titre: "Assistance d'une panne matérielle.", categorie: "Stage SIO1", description: "Assistance d'un client sur un problème de connectique interne." },
-  { id: 9, url: "/images/gemini.PNG", titre: "Exemple de SEO sur une IA.", categorie: "Stage SIO2", description: "Exemple de l'optimisation SEO sur l'IA Gemini en anglais." },
-  { id: 10, url: "/images/moltbook.png", titre: "Capture d'écran d'une conversation MoltBook.", categorie: "Stage SIO2", description: "Scénario fictif entre deux IA sur le site web MoltBook à propos de l'entreprise Skyld." },
-  { id: 11, url: "/images/llm.JPG", titre: "Création du fichier .llm dans le site web.", categorie: "Stage SIO2", description: "Ce fichier sert à optimiser la recherche pour les IA qui scannent Internet." },
-  { id: 12, url: "/images/podcast.JPG", titre: "Page podcast du site de Skyld.", categorie: "Stage SIO2", description: "Page créé suite à la requête de mon tuteur de stage." },
-  { id: 13, url: "/images/demoproduit.jpg", titre: "Page de démo du produit de l'entreprise.", categorie: "Stage SIO2", description: "Page créé suite à la requête de mon tuteur de stage." },
-  { id: 14, url: "/images/github.jpg", titre: "Photo de la page github du site de l'entreprise.", categorie: "Stage SIO2", description: "Github de l'entreprise." },
-  { id: 15, url: "/images/code5janv.jpg", titre: "Code source du site web.", categorie: "Stage SIO2", description: "Code source du site web affiché via Visual Studio Code." },
-  { id: 16, url: "/images/codeIA.png", titre: "Code source du l'IA de détection d'objets.", categorie: "Projets Perso", description: "Code source de l'IA de détection d'objets affiché via Visual Studio Code." },
-  { id: 17, url: "/images/PortfolioTerminal.png", titre: "Extrait du code source du site web du portfolio 'terminal'.", categorie: "Projets Perso", description: "Code source de mon portfolio 'terminal' affiché via Github." },
-  { id: 19, url: "/images/changementMdp.png", titre: "Interface de changement de mot de passe de la MDL.", categorie: "Projets Pro", description: "Provenant du projet Digicode." },
-  { id: 20, url: "/images/backIndex.png", titre: "Code PHP de la page Index du site de la MDL.", categorie: "Projets Pro", description: "Provenant du projet Digicode." },
-  { id: 21, url: "/images/index.png", titre: "Index du site vitrine Prestashop.", categorie: "Projets Pro", description: "Provenant du projet Prestashop." },
-  { id: 22, url: "/images/backPresta.png", titre: "Page Admin du site 'Joie Contenue'.", categorie: "Projets Pro", description: "Provenant du projet Prestashop." },
-  { id: 23, url: "/images/backcSharp.png", titre: "Code en C# de l'interface 'TraceGPS' sur l'IDE Visual Studio.", categorie: "Projets Pro", description: "Provenant du projet TraceGPS." },
-  { id: 24, url: "/images/backForm.png", titre: "Interface de l'application 'TraceGPS' sur l'IDE Visual Studio", categorie: "Projets Pro", description: "Provenant du projet TraceGPS." },
-  { id: 25, url: "/images/backPowerApps.png", titre: "Interface de développement de l'application Tutorat sur Power Apps.", categorie: "Projets Pro", description: "Provenant du projet Tutorat." },
-  { id: 26, url: "/images/CodeOrcAI.png", titre: "Extrait du code de l'intelligence artificielle du jeu FOUND.", categorie: "Projets Perso", description: "Via l'IDE Visual Studio, à partir d'Unity." },
-  { id: 27, url: "/images/NiveauOverall.png", titre: "Interface de développement du jeu FOUND via Unity.", categorie: "Projets Perso", description: "Extrait du menu principal et modifications d'éléments à l'écran." },
+  { id: 1, url: "images/siteasp.jpg", titre: "Un des sites web finaux d'ASP France.", categorie: "Stage SIO1", description: "Site sous WordPress abandonné après plusieurs propositions." },
+  { id: 2, url: "images/key.jpg", titre: "Activation d'une clé de license Windows.", categorie: "Stage SIO1", description: "Sous demande d'un(e) client(e), nous avons activé une clé Windows 7." },
+  { id: 3, url: "images/word.jpg", titre: "Interface WordPress.", categorie: "Stage SIO1", description: "Interface de développement du CMS WordPress." },
+  { id: 4, url: "images/siteaspini.jpg", titre: "Site initial d'ASP France.", categorie: "Stage SIO1", description: "Site et interface toujours active d'ASP France." },
+  { id: 5, url: "images/serveur1.jpg", titre: "Baie de serveur", categorie: "Stage SIO1", description: "Baie de serveur d'un client d'ASP France." },
+  { id: 6, url: "images/serveur2.jpg", titre: "Baie de serveur", categorie: "Stage SIO1", description: "Baie de serveur d'un autre client d'ASP France." },
+  { id: 7, url: "images/help.jpg", titre: "Assistance HelpDesk d'un des clients.", categorie: "Stage SIO1", description: "Assistance d'un client sur un problème de driver Intel." },
+  { id: 8, url: "images/composants.jpg", titre: "Assistance d'une panne matérielle.", categorie: "Stage SIO1", description: "Assistance d'un client sur un problème de connectique interne." },
+  { id: 9, url: "images/gemini.PNG", titre: "Exemple de SEO sur une IA.", categorie: "Stage SIO2", description: "Exemple de l'optimisation SEO sur l'IA Gemini en anglais." },
+  { id: 10, url: "images/moltbook.png", titre: "Capture d'écran d'une conversation MoltBook.", categorie: "Stage SIO2", description: "Scénario fictif entre deux IA sur le site web MoltBook à propos de l'entreprise Skyld." },
+  { id: 11, url: "images/llm.JPG", titre: "Création du fichier .llm dans le site web.", categorie: "Stage SIO2", description: "Ce fichier sert à optimiser la recherche pour les IA qui scannent Internet." },
+  { id: 12, url: "images/podcast.JPG", titre: "Page podcast du site de Skyld.", categorie: "Stage SIO2", description: "Page créé suite à la requête de mon tuteur de stage." },
+  { id: 13, url: "images/demoproduit.jpg", titre: "Page de démo du produit de l'entreprise.", categorie: "Stage SIO2", description: "Page créé suite à la requête de mon tuteur de stage." },
+  { id: 14, url: "images/github.jpg", titre: "Photo de la page github du site de l'entreprise.", categorie: "Stage SIO2", description: "Github de l'entreprise." },
+  { id: 15, url: "images/code5janv.jpg", titre: "Code source du site web.", categorie: "Stage SIO2", description: "Code source du site web affiché via Visual Studio Code." },
+  { id: 16, url: "images/codeIA.png", titre: "Code source du l'IA de détection d'objets.", categorie: "Projets Perso", description: "Code source de l'IA de détection d'objets affiché via Visual Studio Code." },
+  { id: 17, url: "images/PortfolioTerminal.png", titre: "Extrait du code source du site web du portfolio 'terminal'.", categorie: "Projets Perso", description: "Code source de mon portfolio 'terminal' affiché via Github." },
+  { id: 19, url: "images/changementMdp.png", titre: "Interface de changement de mot de passe de la MDL.", categorie: "Projets Pro", description: "Provenant du projet Digicode." },
+  { id: 20, url: "images/backIndex.png", titre: "Code PHP de la page Index du site de la MDL.", categorie: "Projets Pro", description: "Provenant du projet Digicode." },
+  { id: 21, url: "images/index.png", titre: "Index du site vitrine Prestashop.", categorie: "Projets Pro", description: "Provenant du projet Prestashop." },
+  { id: 22, url: "images/backPresta.png", titre: "Page Admin du site 'Joie Contenue'.", categorie: "Projets Pro", description: "Provenant du projet Prestashop." },
+  { id: 23, url: "images/backcSharp.png", titre: "Code en C# de l'interface 'TraceGPS' sur l'IDE Visual Studio.", categorie: "Projets Pro", description: "Provenant du projet TraceGPS." },
+  { id: 24, url: "images/backForm.png", titre: "Interface de l'application 'TraceGPS' sur l'IDE Visual Studio", categorie: "Projets Pro", description: "Provenant du projet TraceGPS." },
+  { id: 25, url: "images/backPowerApps.png", titre: "Interface de développement de l'application Tutorat sur Power Apps.", categorie: "Projets Pro", description: "Provenant du projet Tutorat." },
+  { id: 26, url: "images/CodeOrcAI.png", titre: "Extrait du code de l'intelligence artificielle du jeu FOUND.", categorie: "Projets Perso", description: "Via l'IDE Visual Studio, à partir d'Unity." },
+  { id: 27, url: "images/NiveauOverall.png", titre: "Interface de développement du jeu FOUND via Unity.", categorie: "Projets Perso", description: "Extrait du menu principal et modifications d'éléments à l'écran." },
 ];
 
-// --- Icônes personnalisées ---
 const GithubIcon = ({ size = 24 }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.8 4.8 0 0 0 9 18v4"></path>
@@ -166,13 +215,8 @@ const LinkedinIcon = ({ size = 24 }) => (
   </svg>
 );
 
-// --- Classes CSS réutilisables pour le style Liquid Glass ---
 const glassClasses = "bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]";
 const glassButtonClasses = "bg-white/50 dark:bg-slate-800/50 backdrop-blur-md border border-white/50 dark:border-white/10 hover:bg-white/70 dark:hover:bg-slate-700/50 transition-all duration-300";
-
-// ==========================================
-// 🧩 COMPOSANTS DE L'APPLICATION
-// ==========================================
 
 export default function App() {
   const [currentRoute, setCurrentRoute] = useState('accueil');
@@ -181,7 +225,6 @@ export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    // Applique la classe "dark" au body pour Tailwind
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
@@ -199,9 +242,7 @@ export default function App() {
     if (!selectedImage) return null;
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-in fade-in duration-300" onClick={() => setSelectedImage(null)}>
-        {/* Fond flouté sombre de la modale */}
         <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"></div>
-        
         <div className={`relative max-w-5xl w-full flex flex-col items-center justify-center p-4 rounded-3xl ${glassClasses}`} onClick={e => e.stopPropagation()}>
           <button 
             className="absolute -top-4 -right-4 md:top-4 md:right-4 text-slate-800 dark:text-white bg-white/80 dark:bg-slate-800/80 backdrop-blur-md p-3 rounded-full shadow-lg hover:scale-110 transition-transform z-10 border border-white/50 dark:border-white/20"
@@ -227,39 +268,36 @@ export default function App() {
 
   return (
     <div className={`min-h-screen font-sans selection:bg-blue-300/50 transition-colors duration-500 ${isDarkMode ? 'text-slate-200' : 'text-slate-800'} relative overflow-hidden`}>
-      
-      {/* 🎨 ARRIÈRE-PLAN LIQUID GLASS (Orbes colorées floutées) */}
       <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
         <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-400/30 dark:bg-blue-600/20 blur-[120px]"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-purple-400/30 dark:bg-purple-900/20 blur-[120px]"></div>
         <div className="absolute top-[40%] left-[50%] w-[30vw] h-[30vw] rounded-full bg-emerald-400/20 dark:bg-teal-600/10 blur-[100px]"></div>
       </div>
 
-      {/* HEADER / NAVIGATION */}
       <header className={`sticky top-0 z-40 ${glassClasses} border-t-0 border-x-0 rounded-none`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            {/* Logo */}
             <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => navigateTo('accueil')}>
               <span className="text-2xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
                 Portfolio épreuve E5
               </span>
             </div>
 
-            {/* Menu Desktop */}
-            <div className="hidden md:flex items-center space-x-2">
-              <nav className="flex space-x-2">
+            <div className="hidden lg:flex items-center space-x-1">
+              <nav className="flex space-x-1">
                 {[
                   { id: 'accueil', label: 'Accueil' },
+                  { id: 'competences', label: 'Compétences' },
                   { id: 'projets-perso', label: 'Projets Perso' },
                   { id: 'projets-pro', label: 'Projets Pro' },
                   { id: 'stages', label: 'Stages' },
-                  { id: 'preuves', label: 'Preuves' }
+                  { id: 'preuves', label: 'Preuves' },
+                  { id: 'veille', label: 'Veille' }
                 ].map((item) => (
                   <button
                     key={item.id}
                     onClick={() => navigateTo(item.id)}
-                    className={`px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
+                    className={`px-3 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
                       currentRoute === item.id 
                         ? 'bg-blue-600/10 dark:bg-blue-400/20 text-blue-700 dark:text-blue-300 shadow-inner' 
                         : 'text-slate-600 dark:text-slate-300 hover:bg-white/40 dark:hover:bg-slate-800/40'
@@ -270,7 +308,6 @@ export default function App() {
                 ))}
               </nav>
               
-              {/* Toggle Dark Mode */}
               <div className="pl-4 ml-4 border-l border-slate-300/50 dark:border-slate-700/50">
                 <button
                   onClick={() => setIsDarkMode(!isDarkMode)}
@@ -281,8 +318,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Menu Mobile Button */}
-            <div className="md:hidden flex items-center gap-3">
+            <div className="lg:hidden flex items-center gap-3">
               <button onClick={() => setIsDarkMode(!isDarkMode)} className={`p-2 rounded-xl ${glassButtonClasses}`}>
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
               </button>
@@ -293,16 +329,17 @@ export default function App() {
           </div>
         </div>
 
-        {/* Menu Mobile Déroulant */}
         {isMobileMenuOpen && (
-          <div className={`md:hidden absolute w-full top-20 left-0 ${glassClasses} rounded-b-3xl border-t-0 p-4 shadow-2xl`}>
+          <div className={`lg:hidden absolute w-full top-20 left-0 ${glassClasses} rounded-b-3xl border-t-0 p-4 shadow-2xl`}>
             <div className="space-y-2">
               {[
                 { id: 'accueil', label: 'Accueil' },
+                { id: 'competences', label: 'Compétences & Certifs' },
                 { id: 'projets-perso', label: 'Projets Personnels' },
                 { id: 'projets-pro', label: 'Projets Professionnels' },
                 { id: 'stages', label: 'Mes Stages' },
-                { id: 'preuves', label: 'Preuves & Compétences' }
+                { id: 'preuves', label: 'Preuves & Compétences' },
+                { id: 'veille', label: 'Veille Technologique' }
               ].map((item) => (
                 <button
                   key={item.id}
@@ -321,15 +358,11 @@ export default function App() {
         )}
       </header>
 
-      {/* CONTENU PRINCIPAL */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 min-h-[calc(100vh-160px)]">
         
-        {/* -- PAGE ACCUEIL -- */}
         {currentRoute === 'accueil' && (
           <div className="space-y-20 animate-in fade-in slide-in-from-bottom-8 duration-700">
-            {/* Hero Section (Centré, sans photo) */}
             <div className={`p-10 md:p-16 rounded-3xl ${glassClasses} text-center max-w-4xl mx-auto relative overflow-hidden`}>
-              {/* Effet de reflet interne */}
               <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent pointer-events-none rounded-t-3xl"></div>
               
               <div className="relative z-10 space-y-8">
@@ -367,7 +400,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Accès rapides */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 { id: 'projets-pro', icon: <Briefcase size={28} />, title: "Projets Pros", desc: "Découvrez les projets réalisés en formation.", color: "text-blue-600 dark:text-blue-400" },
@@ -389,7 +421,89 @@ export default function App() {
           </div>
         )}
 
-        {/* -- PAGE PROJETS PERSO & PRO -- */}
+        {currentRoute === 'competences' && (
+          <div className="space-y-10 animate-in fade-in slide-in-from-bottom-8 duration-500">
+            <div className={`p-8 rounded-3xl ${glassClasses}`}>
+              <h1 className="text-4xl font-extrabold flex items-center gap-4">
+                <ShieldCheck className="text-blue-500" size={36}/> Compétences & Certifications
+              </h1>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className={`p-8 rounded-3xl ${glassClasses}`}>
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-3"><Code className="text-purple-500"/> Bagage Technique</h2>
+                <div className="space-y-6">
+                  {COMPETENCES_TECH.map((cat, idx) => (
+                    <div key={idx} className="space-y-2">
+                      <div className="flex items-center gap-2 text-slate-500 font-bold uppercase text-xs tracking-widest">
+                        {cat.icon} {cat.label}
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {cat.items.map(item => (
+                          <span key={item} className="px-3 py-1 rounded-xl bg-white/20 dark:bg-slate-800/40 border border-white/40 dark:border-slate-700/50 text-sm font-semibold">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={`p-8 rounded-3xl ${glassClasses}`}>
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-3"><Award className="text-orange-500"/> Certifications</h2>
+                <div className="space-y-3">
+                  {CERTIFICATIONS.map((cert, idx) => (
+                    <div key={idx} className="flex items-center gap-4 p-4 rounded-2xl bg-white/30 dark:bg-slate-800/30 border border-white/50 dark:border-white/5 shadow-sm">
+                      <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 flex-shrink-0">
+                        <ShieldCheck size={20}/>
+                      </div>
+                      <div>
+                        <p className="font-bold text-slate-700 dark:text-slate-200">{cert.nom}</p>
+                        <p className="text-xs text-slate-500">{cert.organisme}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {currentRoute === 'veille' && (
+          <div className="space-y-10 animate-in fade-in slide-in-from-bottom-8 duration-500">
+            <div className={`p-8 rounded-3xl ${glassClasses}`}>
+              <h1 className="text-4xl font-extrabold flex items-center gap-4">
+                <Rss className="text-emerald-500" size={36}/> Veille Technologique
+              </h1>
+              <p className="mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+                Suivi constant des évolutions du secteur, particulièrement dans le domaine de la cybersécurité et du développement logiciel.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {VEILLE_DATA.map((source, idx) => (
+                <a 
+                  key={idx} 
+                  href={source.url} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className={`p-8 rounded-3xl ${glassClasses} group hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all hover:-translate-y-1 block`}
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-widest">
+                      {source.source}
+                    </span>
+                    <ExternalLink size={18} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{source.nom}</h3>
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{source.desc}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
         {(currentRoute === 'projets-perso' || currentRoute === 'projets-pro') && (
           <div className="space-y-10 animate-in fade-in slide-in-from-bottom-8 duration-500">
             <div className={`p-8 rounded-3xl ${glassClasses}`}>
@@ -437,19 +551,16 @@ export default function App() {
           </div>
         )}
 
-        {/* -- PAGE STAGES -- */}
         {currentRoute === 'stages' && (
           <StagesPage setSelectedImage={setSelectedImage} />
         )}
 
-        {/* -- PAGE PREUVES -- */}
         {currentRoute === 'preuves' && (
           <PreuvesPage setSelectedImage={setSelectedImage} />
         )}
 
       </main>
 
-      {/* FOOTER */}
       <footer className={`${glassClasses} border-b-0 border-x-0 rounded-none py-8 mt-12`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-medium text-slate-600 dark:text-slate-400">© {new Date().getFullYear()} {INFOS.nom}. Portfolio E5 BTS SIO.</p>
@@ -460,15 +571,11 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Modal Lightbox */}
       <ImageViewer />
     </div>
   );
 }
 
-// ==========================================
-// 📄 SOUS-COMPOSANT : PAGE STAGES
-// ==========================================
 function StagesPage({ setSelectedImage }) {
   const [activeTab, setActiveTab] = useState('sio2');
   const currentStage = STAGES[activeTab];
@@ -483,7 +590,6 @@ function StagesPage({ setSelectedImage }) {
           <p className="mt-2 text-slate-600 dark:text-slate-400">Immersion en milieu professionnel.</p>
         </div>
         
-        {/* Onglets Glass */}
         <div className="flex bg-black/5 dark:bg-white/5 p-1.5 rounded-2xl backdrop-blur-sm border border-black/5 dark:border-white/10">
           <button 
             onClick={() => setActiveTab('sio1')}
@@ -504,7 +610,6 @@ function StagesPage({ setSelectedImage }) {
         <div className="flex flex-col lg:flex-row gap-12">
           <div className="flex-1 space-y-8">
             <div>
-              {/* Le nom de l'entreprise devient un lien cliquable si un siteWeb est défini */}
               {currentStage.siteWeb ? (
                 <a 
                   href={currentStage.siteWeb} 
@@ -544,7 +649,6 @@ function StagesPage({ setSelectedImage }) {
             </div>
           </div>
 
-          {/* Galerie Glass */}
           <div className="lg:w-1/3 space-y-4">
             <h3 className="text-sm font-extrabold uppercase tracking-widest text-slate-500 flex items-center gap-2 mb-6">
               <ImageIcon size={18} /> Galerie Captures
@@ -573,9 +677,6 @@ function StagesPage({ setSelectedImage }) {
   );
 }
 
-// ==========================================
-// 📄 SOUS-COMPOSANT : PAGE PREUVES
-// ==========================================
 function PreuvesPage({ setSelectedImage }) {
   const [activeCategory, setActiveCategory] = useState("Toutes");
   const preuvesFiltrees = activeCategory === "Toutes" ? PREUVES : PREUVES.filter(p => p.categorie === activeCategory);
@@ -591,7 +692,6 @@ function PreuvesPage({ setSelectedImage }) {
             <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">Images, captures d'écran, schémas et certifications justifiant de mes compétences.</p>
           </div>
           
-          {/* Nouveau bouton "Voir plus" (Le lien est paramétrable dans INFOS) */}
           <a 
             href={INFOS.lienPreuvesExternes} 
             target="_blank" 
@@ -602,7 +702,6 @@ function PreuvesPage({ setSelectedImage }) {
           </a>
         </div>
         
-        {/* Filtres Glass */}
         <div className="flex flex-wrap gap-3 mt-8">
           {PREUVES_CATEGORIES.map(cat => (
             <button
